@@ -1,14 +1,45 @@
 //Promises: ECMAScript 2015
 //async/await: ECMAScript 2017
 
+function fatorial (n){
+    if (n < 0) return Promise.reject("Valor não pode ser negativo")
+    let res = 1
+    for (let i = 2; i <= n; i++) res *= i
+    return Promise.resolve(res)    
+}
+
+function chamadaComThenCatch(){
+    fatorial(10)
+    .then(res => console.log(res))
+    .catch(erro => console.log(erro))
+
+    fatorial(-10)
+    .then(res => console.log(res))
+    .catch(erro => console.log(erro))
+}
+
+async function chamadaComAsyncAwait() {
+    try{
+        const f1 = await fatorial(10)
+        console.log(f1)
+        const f2 = await fatorial(-10)
+        console.log(f2)
+    }
+    catch (e){
+        console.log(e)
+    }
+}
+
+
+
 // async function hello (nome){
     //     return `Hello, ${nome}`
     // }
-const hello = async (nome) => {
-    return `Hello ${nome}`
-}
-const resultado = hello("Ana")
-resultado.then (r => console.log(r))
+// const hello = async (nome) => {
+//     return `Hello ${nome}`
+// }
+// const resultado = hello("Ana")
+// resultado.then (r => console.log(r))
 
 
 // function hello (nome){
